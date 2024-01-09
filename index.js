@@ -13,7 +13,10 @@ const exampleSongData = require("./data/songs");
  * @param {Object[]} songs - An array of songs.
  * @returns {string[]} Sorted song titles.
  */
-function getSortedTitles(songs) {}
+function getSortedTitles(songs) {
+  return songs.map(x=> x.title).sort()
+}
+
 
 // #2
 /**
@@ -22,7 +25,17 @@ function getSortedTitles(songs) {}
  * @param {string} albumName - Name of the album.
  * @returns {string[]} An array of song titles.
  */
-function getSongsFromAlbum(songs, albumName) {}
+function getSongsFromAlbum(songs, albumName) {
+  const filters = songs.filter(song => {
+    if(song.album == albumName){
+      return song.title;
+    }
+  })
+
+  return filters.map(song => song.title)
+} 
+
+console.log(getSongsFromAlbum(exampleSongData,'Bluewerks Vol. 1: Up Down Left Right'))
 
 // #3 
 /**
