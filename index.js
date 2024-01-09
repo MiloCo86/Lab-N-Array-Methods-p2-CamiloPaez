@@ -14,7 +14,7 @@ const exampleSongData = require("./data/songs");
  * @returns {string[]} Sorted song titles.
  */
 function getSortedTitles(songs) {
-  return songs.map(x=> x.title).sort()
+  return songs.map(song=> song.title).sort()
 }
 
 
@@ -31,11 +31,9 @@ function getSongsFromAlbum(songs, albumName) {
       return song.title;
     }
   })
-
   return filters.map(song => song.title)
 } 
-
-console.log(getSongsFromAlbum(exampleSongData,'Bluewerks Vol. 1: Up Down Left Right'))
+// console.log(getSongsFromAlbum(exampleSongData,'Bluewerks Vol. 1: Up Down Left Right'))
 
 // #3 
 /**
@@ -43,7 +41,30 @@ console.log(getSongsFromAlbum(exampleSongData,'Bluewerks Vol. 1: Up Down Left Ri
  * @param {Object[]} songs - An array of songs.
  * @returns {Object} An object with counts of short, medium, and long songs.
  */
-function categorizeSongsByRuntime(songs) {}
+function categorizeSongsByRuntime(songs) {
+  const obj = {
+    longSongs: 0,
+    mediumSongs: 0,
+    shortSongs: 0
+  }
+  let arr = songs.map(song=> song.runtimeInSeconds).sort();
+  console.log(arr)
+  for (let t of arr){
+    if (t>240){
+      obj.longSongs ++
+    }else if(t<180){
+      obj.shortSongs ++
+    }else{
+      obj.mediumSongs ++
+    }
+  }
+
+  return obj
+
+  
+}
+
+console.log (categorizeSongsByRuntime(exampleSongData))
 
 // #4
 /**
